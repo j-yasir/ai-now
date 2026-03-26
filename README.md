@@ -1,66 +1,138 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# 🤖 AI Now — The Future of AI, Delivered Daily
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+![AI Now Landing Page Mockup](/home/yasir-jalal/.gemini/antigravity/brain/49efe31c-43e8-4761-9a41-4986ae2b366f/ai_now_landing_page_mockup_1774517462907.png)
 
-## About Laravel
+**AI Now** is a modern, high-performance news platform built with Laravel 11 and Filament PHP. It provides a sleek, glassmorphic interface for consuming the latest artificial intelligence news, research, and product updates.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+---
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## 🚀 System Architecture
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+```mermaid
+graph TD
+    User((User)) -->|HTTPS| Cloud[Laravel Cloud / Edge Network]
+    Cloud -->|Routes| App[Laravel 11 App]
+    App -->|Eloquent ORM| DB[(MySQL 8.4 DB)]
+    App -->|Auth/Management| Filament[Filament Admin Panel]
+    App -->|Styles| Tailwind[Tailwind CSS / Vite]
+```
 
-## Learning Laravel
+## 📊 Database Schema (ERD)
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+```mermaid
+erDiagram
+    USER ||--o{ ARTICLE : creates
+    USER {
+        string name
+        string email
+        string password
+        boolean is_admin
+    }
+    ARTICLE {
+        string title
+        string slug
+        string excerpt
+        text body
+        string category
+        string image_url
+        string source_url
+        string source_name
+        boolean is_published
+        datetime published_at
+    }
+```
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+---
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## ✨ Key Features
 
-## Laravel Sponsors
+- **💎 Premium UI/UX**: Dark mode by default with glassmorphism effects and modern typography (Inter/Outfit).
+- **🛠️ Filament Admin**: A full-featured dashboard to manage articles, categories, and users at `/admin`.
+- **📦 Production Ready**: Optimized for Laravel Cloud with shared database support and automated build commands.
+- **⚡ Performance First**: Integrated caching for routes, config, and views, using database-driven sessions for stability.
+- **🏷️ Smart Categorization**: Articles are grouped into AI News, Models, Research, and Tools.
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+---
 
-### Premium Partners
+## 🛠️ Local Setup & Running
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+### Prerequisites
+- PHP 8.2+
+- Composer
+- Node.js & NPM
+- MySQL
 
-## Contributing
+### Installation Steps
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+1. **Clone the repository**:
+   ```bash
+   git clone <your-repo-url>
+   cd Laravel-proj
+   ```
 
-## Code of Conduct
+2. **Install Dependencies**:
+   ```bash
+   composer install
+   npm install
+   ```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+3. **Environment Configuration**:
+   ```bash
+   cp .env.example .env
+   php artisan key:generate
+   ```
+   *Edit `.env` and set your `DB_DATABASE`, `DB_USERNAME`, and `DB_PASSWORD`.*
 
-## Security Vulnerabilities
+4. **Run Migrations & Seeders**:
+   ```bash
+   php artisan migrate --seed
+   ```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+5. **Link Storage & Build Assets**:
+   ```bash
+   php artisan storage:link
+   npm run dev
+   ```
 
-## License
+6. **Serve the Application**:
+   ```bash
+   php artisan serve
+   ```
+   Visit `http://localhost:8000` to see the site. Access the admin at `/admin` (Default: `admin@example.com` / `password`).
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+---
+
+## ☁️ Laravel Cloud Deployment Flow
+
+```mermaid
+sequenceDiagram
+    participant Dev as Developer
+    participant GH as GitHub
+    participant LC as Laravel Cloud
+    participant DB as MySQL DB
+
+    Dev->>GH: git push origin main
+    GH->>LC: Trigger Webhook
+    LC->>LC: Build (composer install)
+    LC->>DB: php artisan migrate --force
+    LC->>DB: php artisan db:seed --force
+    LC->>LC: Cache Routes & Config
+    LC->>Dev: Deployment Live! 🚀
+```
+
+### Steps to Deploy
+1. **Push to GitHub**: Initialize git and push to a new repo.
+2. **Import Project**: Select the repo in Laravel Cloud.
+3. **Provision Database**: Add a MySQL resource (Free Tier/Dev).
+4. **Configure Build Command**:
+   ```bash
+   php artisan migrate --force && php artisan db:seed --force && php artisan config:cache && php artisan route:cache && php artisan view:cache && php artisan storage:link
+   ```
+5. **Set Environment Variables**: Add `APP_NAME`, `APP_ENV=production`, and your `NEWS_API_KEY`.
+6. **Deploy**: Click the blue **Deploy** button and watch the magic happen!
+
+---
+
+## 📜 License
+The AI Now platform is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
